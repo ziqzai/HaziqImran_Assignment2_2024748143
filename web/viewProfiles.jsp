@@ -12,7 +12,6 @@
 
     try {
         if (keyword != null && keyword.trim().length() > 0) {
-            // UNIQUE FEATURE: search by name / student ID
             profiles = ProfileDAO.searchProfiles(keyword.trim());
         } else {
             profiles = ProfileDAO.getAllProfiles();
@@ -31,13 +30,12 @@
 </head>
 <body>
 <div class="container">
-
     <h1>All Student Profiles</h1>
 
-    <!-- Search form (unique feature) -->
-    <form method="get" action="viewProfiles.jsp" style="margin-bottom: 20px;">
-        <label for="keyword"><strong>Search (Name / Student ID):</strong></label>
-        <input type="text" id="keyword" name="keyword"
+    <!-- Search form -->
+    <form method="get" action="viewProfiles.jsp" class="search-bar">
+        <input type="text" name="keyword" id="keyword"
+               placeholder="Search by Name or Student ID"
                value="<%= (keyword != null ? keyword : "") %>">
         <button type="submit">Search</button>
         <a href="viewProfiles.jsp">Reset</a>
@@ -55,7 +53,7 @@
         } else {
     %>
 
-    <table border="1" cellpadding="8" cellspacing="0">
+    <table>
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -65,6 +63,7 @@
             <th>Phone</th>
             <th>Hobbies</th>
             <th>About</th>
+            <th>Actions</th>
         </tr>
 
         <%
@@ -79,6 +78,18 @@
             <td><%= p.getPhone() %></td>
             <td><%= p.getHobbies() %></td>
             <td><%= p.getAbout() %></td>
+            <td>
+            <td class="actions-cell">
+                <a class="action-link edit"
+                   href="editProfile.jsp?id=<%= p.getId() %>">Edit</a>
+                <a class="action-link delete"
+                   href="deleteProfile.jsp?id=<%= p.getId() %>"
+                   onclick="return confirm('Are you sure you want to delete this profile?');">
+                   Delete
+                </a>
+            </td>
+
+
         </tr>
         <%
             }
@@ -89,8 +100,8 @@
         }
     %>
 
-    <p style="margin-top:20px;">
-        <a href="index.jsp">Create New Profile</a>
+    <p style="margin-top: 20px;">
+        <a href="index.jsp" class="back-link">Create New Profile</a>
     </p>
 </div>
 </body>

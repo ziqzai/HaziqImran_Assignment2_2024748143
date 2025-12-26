@@ -194,3 +194,41 @@ h2 {
     transform: translateY(-1px);
     box-shadow: 0 8px 16px rgba(148,163,184,0.35);
 }
+
+.actions-cell {
+    text-align: center;
+    white-space: nowrap;  
+}
+
+.action-link {
+    display: inline-block;         
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid #4e54c8;
+    text-decoration: none;
+    margin: 0 3px;
+}
+
+.action-link.edit {
+    background: #4e54c8;
+    color: #fff;
+}
+
+.action-link.delete {
+    background: #ffffff;
+    color: #d9534f;
+    border-color: #d9534f;
+}
+
+.action-link.delete:hover {
+    background: #d9534f;
+    color: #ffffff;
+}
+
+
+.actions-cell a {
+    display: inline-block;
+}
+
+
